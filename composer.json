@@ -30,7 +30,7 @@
 		"symfony/options-resolver" : "^3",
 		"phootwork/file" : "~0",
 		"phootwork/tokenizer" : "~0",
-		"nikic/php-parser" : "^3|^2|^1"
+		"nikic/php-parser" : "@stable"
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "^5.7",
