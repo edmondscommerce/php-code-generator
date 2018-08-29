@@ -13,7 +13,7 @@ use gossi\codegen\tests\parts\ValueTests;
  * @group model
  */
 class ClassTest extends \PHPUnit_Framework_TestCase {
-	
+
 	use ModelAssertions;
 	use ValueTests;
 
@@ -133,6 +133,10 @@ class ClassTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue($class->hasUseStatement('other\name\space\Interface'));
 		$this->assertSame($class, $class->removeInterface('other\name\space\Interface'));
 		$this->assertTrue($class->hasUseStatement('other\name\space\Interface'));
+
+		$class->addInterface('\my\Interface');
+		$this->assertTrue($class->hasInterface('\my\Interface'));
+		$this->assertFalse($class->hasInterface('my\Interface'));
 	}
 
 	public function testTraits() {
@@ -163,6 +167,12 @@ class ClassTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue($class->hasUseStatement('other\name\space\Trait'));
 		$this->assertSame($class, $class->removeTrait('other\name\space\Trait'));
 		$this->assertTrue($class->hasUseStatement('other\name\space\Trait'));
+
+		$class = new PhpClass('my\name\space\Class');
+		$class->addTrait('my\trait');
+		$this->assertEquals(1, count($class->getTraits()));
+		$class->removeTrait('my\trait');
+		$this->assertEquals(0, count($class->getTraits()));
 	}
 
 	public function testProperties() {
@@ -227,5 +237,5 @@ class ClassTest extends \PHPUnit_Framework_TestCase {
 		$class->setDescription(['multiline', 'description']);
 		$this->assertEquals("multiline\ndescription", $class->getDescription());
 	}
-	
+
 }
