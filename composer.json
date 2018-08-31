@@ -38,8 +38,7 @@
 		"phpunit/phpunit" : "^5.7"
 	},
 	"suggest" : {
-		"gossi/php-code-formatter" : "Formatting your generated code",
-		"sami/sami" : "API Documentation"
+		"gossi/php-code-formatter" : "Formatting your generated code"
 	},
 	"scripts" : {
 		"test" : "phpunit",
